@@ -1,0 +1,107 @@
+@use './base/variables';
+@use './base/reset';
+@use './components/todo';
+
+/* Inria serif */
+@import url("https://fonts.googleapis.com/css2?family=Inria+Serif:wght@700&display=swap");
+/* Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+/* Paprika */
+@import url("https://fonts.googleapis.com/css2?family=Paprika&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-textColor tracking-wider overflow-x-hidden font-Inria;
+  }
+
+  section {
+    @apply py-16 md:pt-20 md:pb-20;
+  }
+
+  button {
+    @apply font-Poppins;
+  }
+}
+
+@layer components {
+  .bg-container {
+    background-image: url('./assets/Hero-New-Bg.jpg');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    height: 300px;
+    position: absolute;
+    left: calc(50% - 50vw);
+    top: 0;
+    width: 100vw;
+    z-index: -1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      opacity: 0.5;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, #3b82f6, #9333ea); /* Example gradient */
+      pointer-events: none; /* Ensure it doesn't block clicks */
+      z-index: 1; /* Ensure it appears above the image */
+    }
+  }
+
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .checkbox-container input {
+    display: none;
+  }
+
+  .checkbox-box {
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .checkbox-box .checkbox-gradient {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    background: transparent;
+  }
+
+  .checkbox-container input:checked ~ .checkbox-box .checkbox-gradient {
+    background: linear-gradient(to bottom, #3b82f6, #9333ea);
+  }
+
+  .checkmark-icon {
+    width: 1rem;
+    height: 1rem;
+    color: white;
+    transition: all 0.3s ease;
+    display: none;
+    z-index: 22;
+  }
+
+  .checkbox-container input:checked ~ .checkbox-box .checkmark-icon {
+    display: block;
+  }
+}

@@ -88,18 +88,31 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    transition: border-color 0.3s ease-in-out;
+
+    .checkbox-gradient {
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
   }
 
-  .checkbox-box .checkbox-gradient {
-    position: absolute;
-    inset: 0;
-    border-radius: 9999px;
-    transition: all 0.3s ease;
-    background: transparent;
-  }
+  .checkbox-container {
+    input:checked {
+      ~ .checkbox-box {
+        .checkbox-gradient {
+          background: linear-gradient(to bottom, #3b82f6, #9333ea);
+        }
+      }
+    }
 
-  .checkbox-container input:checked ~ .checkbox-box .checkbox-gradient {
-    background: linear-gradient(to bottom, #3b82f6, #9333ea);
+    input:not(:checked) {
+      ~ .checkbox-box {
+        @apply hover:border-blue-500;
+      }
+    }
   }
 
   .checkmark-icon {

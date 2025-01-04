@@ -82,7 +82,9 @@ const App: React.FC = () => {
             setShowCompleted={setShowCompleted}
           />
         )}
-        <Footer />
+        {todos.length > 0 && (
+          <Footer />
+        )}
       </div>
     );
 };

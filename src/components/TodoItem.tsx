@@ -37,7 +37,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, toggleComplete, deleteTodo })
           </div>
         </label>
         <span
-          className={`text-lg px-2 ${todo.completed ? "line-through text-gray-400" : ""}`}
+          className={`todo-item__text text-lg px-2 ${todo.completed ? "line-through text-gray-400" : ""}`}
         >
           {todo.text}
         </span>

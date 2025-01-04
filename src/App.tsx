@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import TodoList from "./components/TodoList";
 import Filters from "./components/Filters";
+import Footer from "./components/Footer";
 import { Todo } from "./types";
 
 const App: React.FC = () => {
@@ -61,28 +62,29 @@ const App: React.FC = () => {
     ? filteredTodos
     : filteredTodos.filter((todo) => !todo.completed);
 
-  return (
-    <div className="app-container max-w-lg mx-auto px-4">
-      <Header addTodo={addTodo} />
-      <TodoList
-        todos={visibleTodos}
-        toggleComplete={toggleComplete}
-        deleteTodo={deleteTodo}
-        onReorder={handleReorder}
-      />
-      {todos.length > 0 && (
-        <Filters
-          currentFilter={filter}
-          setFilter={setFilter}
-          activeTodosCount={activeTodosCount}
-          completedTodosCount={completedTodosCount}
-          clearCompleted={clearCompleted}
-          showCompleted={showCompleted}
-          setShowCompleted={setShowCompleted}
+    return (
+      <div className="app-container max-w-lg mx-auto px-4">
+        <Header addTodo={addTodo} />
+        <TodoList
+          todos={visibleTodos}
+          toggleComplete={toggleComplete}
+          deleteTodo={deleteTodo}
+          onReorder={handleReorder}
         />
-      )}
-    </div>
-  );
+        {todos.length > 0 && (
+          <Filters
+            currentFilter={filter}
+            setFilter={setFilter}
+            activeTodosCount={activeTodosCount}
+            completedTodosCount={completedTodosCount}
+            clearCompleted={clearCompleted}
+            showCompleted={showCompleted}
+            setShowCompleted={setShowCompleted}
+          />
+        )}
+        <Footer />
+      </div>
+    );
 };
 
 export default App;
